@@ -1,0 +1,28 @@
+﻿spring:
+  application:
+    name: zhan-finance-tgbot
+  main:
+    web-application-type: none
+
+bot:
+  token: ${TELEGRAM_BOT_TOKEN:}
+  username: ${TELEGRAM_BOT_USERNAME:zhan_finance_bot}
+
+jf:
+  backend:
+    base-url: ${JF_BACKEND_BASE_URL:http://localhost:8080/api}
+    internal-token: ${INTERNAL_BOT_TOKEN:}
+    connect-timeout-ms: 3000
+    read-timeout-ms: 5000
+  outbox:
+    poll-interval-ms: 15000
+    batch-size: 50
+    rate-limit-delay-ms: 40
+  cache:
+    session-ttl-minutes: 5
+    max-entries: 5000
+
+logging:
+  level:
+    kz.zhanfinance.bot: INFO
+    org.telegram: WARN

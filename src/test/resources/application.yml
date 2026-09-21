@@ -1,0 +1,27 @@
+﻿spring:
+  application:
+    name: zhan-finance-tgbot-test
+  main:
+    web-application-type: none
+
+bot:
+  token: 123456789:AAFakeTokenForUnitAndIntegrationTestingOnly
+  username: test_zhan_finance_bot
+
+jf:
+  backend:
+    base-url: http://localhost:8080/api
+    internal-token: test-internal-token-32-chars-minimum-valid
+    connect-timeout-ms: 1000
+    read-timeout-ms: 2000
+  outbox:
+    poll-interval-ms: 60000
+    batch-size: 10
+    rate-limit-delay-ms: 0
+  cache:
+    session-ttl-minutes: 5
+    max-entries: 100
+
+logging:
+  level:
+    kz.zhanfinance.bot: DEBUG
