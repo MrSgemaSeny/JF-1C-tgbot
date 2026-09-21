@@ -1,8 +1,11 @@
-﻿spring:
+spring:
   application:
     name: zhan-finance-tgbot
   main:
-    web-application-type: none
+    web-application-type: servlet
+
+server:
+  port: 8081
 
 bot:
   token: ${TELEGRAM_BOT_TOKEN:}
