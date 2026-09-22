@@ -10,6 +10,8 @@ public final class HtmlMessageFormatter {
 
     private HtmlMessageFormatter() {}
 
+    public static final String FRONTEND_URL = "https://mrsgemaseny.github.io/JF-1C";
+
     public static String escape(String text) {
         if (text == null) {
             return "";
@@ -43,7 +45,7 @@ public final class HtmlMessageFormatter {
         if (deadline != null && !deadline.isBlank()) {
             sb.append("<b>Дедлайн:</b> ").append(escape(deadline)).append("\n");
         }
-        sb.append("\n<a href=\"https://zhanfinance.kz/client/tasks\">Открыть в личном кабинете</a>");
+        sb.append("\n<a href=\"").append(FRONTEND_URL).append("/client/tasks\">Открыть в личном кабинете</a>");
         return sb.toString();
     }
 
@@ -51,7 +53,7 @@ public final class HtmlMessageFormatter {
         return "<b>Новый документ</b>\n\n"
                 + "<b>Документ:</b> " + escape(title) + "\n"
                 + "<b>Статус:</b> <code>" + escape(status) + "</code>\n\n"
-                + "<a href=\"https://zhanfinance.kz/client/documents\">Перейти к документам</a>";
+                + "<a href=\"" + FRONTEND_URL + "/client/documents\">Перейти к документам</a>";
     }
 
     public static String formatTasksList(List<TaskSummaryDto> tasks) {
@@ -70,7 +72,7 @@ public final class HtmlMessageFormatter {
             }
             sb.append("\n");
         }
-        sb.append("<a href=\"https://zhanfinance.kz/client/tasks\">Открыть все задачи</a>");
+        sb.append("<a href=\"").append(FRONTEND_URL).append("/client/tasks\">Открыть все задачи</a>");
         return sb.toString().trim();
     }
 
@@ -84,7 +86,7 @@ public final class HtmlMessageFormatter {
             sb.append("  Статус: <code>").append(escape(doc.status() != null ? doc.status() : "Не указан")).append("</code>\n");
             sb.append("\n");
         }
-        sb.append("<a href=\"https://zhanfinance.kz/client/documents\">Перейти к документам</a>");
+        sb.append("<a href=\"").append(FRONTEND_URL).append("/client/documents\">Перейти к документам</a>");
         return sb.toString().trim();
     }
 

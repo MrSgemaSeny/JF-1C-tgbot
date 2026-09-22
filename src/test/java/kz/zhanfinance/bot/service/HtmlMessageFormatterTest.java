@@ -30,8 +30,8 @@ class HtmlMessageFormatterTest {
         assertThat(HtmlMessageFormatter.bold("title & info")).isEqualTo("<b>title &amp; info</b>");
         assertThat(HtmlMessageFormatter.italic("sub < text >")).isEqualTo("<i>sub &lt; text &gt;</i>");
         assertThat(HtmlMessageFormatter.code("UUID-123 & 456")).isEqualTo("<code>UUID-123 &amp; 456</code>");
-        assertThat(HtmlMessageFormatter.link("Portal & CRM", "https://zhanfinance.kz/?a=1&b=2"))
-                .isEqualTo("<a href=\"https://zhanfinance.kz/?a=1&amp;b=2\">Portal &amp; CRM</a>");
+        assertThat(HtmlMessageFormatter.link("Portal & CRM", "https://mrsgemaseny.github.io/JF-1C/?a=1&b=2"))
+                .isEqualTo("<a href=\"https://mrsgemaseny.github.io/JF-1C/?a=1&amp;b=2\">Portal &amp; CRM</a>");
     }
 
     @Test
@@ -42,7 +42,8 @@ class HtmlMessageFormatterTest {
                 .contains("<b>Обновление по задаче</b>")
                 .contains("Сдача НДС &lt;300.00&gt;")
                 .contains("<code>В работе</code>")
-                .contains("2026-09-30");
+                .contains("2026-09-30")
+                .contains("https://mrsgemaseny.github.io/JF-1C/client/tasks");
 
         String withoutDeadline = HtmlMessageFormatter.formatTaskNotification("Ревизия кассы", "Новая", null);
         assertThat(withoutDeadline)
@@ -60,7 +61,7 @@ class HtmlMessageFormatterTest {
                 .contains("<b>Новый документ</b>")
                 .contains("Акт сверки &amp; отчет.pdf")
                 .contains("<code>SIGNED</code>")
-                .contains("https://zhanfinance.kz/client/documents");
+                .contains("https://mrsgemaseny.github.io/JF-1C/client/documents");
     }
 
     @Test
