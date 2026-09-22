@@ -143,8 +143,9 @@ class AdversarialVerificationTest {
 
         assertThat(sentHtml)
                 .contains("Не удалось привязать аккаунт")
-                .contains("&lt;script&gt;alert('xss')&lt;/script&gt; &amp; token expired")
-                .doesNotContain("<script>");
+                .contains("Ссылка недействительна или истек срок ее действия")
+                .doesNotContain("<script>")
+                .doesNotContain("alert('xss')");
         assertThat(sessionCache.get(888222L)).isEmpty();
     }
 
@@ -201,7 +202,7 @@ class AdversarialVerificationTest {
 
         assertThatNoException().isThrownBy(() -> dispatcher.dispatch(update));
 
-        verify(messageSender).sendHtml(eq(888444L), contains("Внутренняя ошибка сервиса"));
+        verify(messageSender).sendHtml(eq(888444L), contains("Не удалось привязать аккаунт"));
         assertThat(sessionCache.get(888444L)).isEmpty();
     }
 

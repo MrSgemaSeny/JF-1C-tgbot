@@ -140,14 +140,25 @@ public final class HtmlMessageFormatter {
                 + "/help — Справка";
     }
 
+    public static String formatLinkError() {
+        return "<b>Не удалось привязать аккаунт</b>\n\n"
+                + "Ссылка недействительна или истек срок ее действия (15 минут).\n\n"
+                + "Пожалуйста, вернитесь в личный кабинет (Профиль -> Настройки -> Telegram), нажмите «Обновить QR-код» и откройте новую ссылку.";
+    }
+
     public static String formatLinkError(String details) {
-        String msg = "<b>Не удалось привязать аккаунт.</b>\n\n"
-                + "Ссылка недействительна или истек срок ее действия (15 минут). "
-                + "Сгенерируйте новую ссылку в личном кабинете.";
-        if (details != null && !details.isBlank()) {
-            msg += "\n\n<i>Детали: " + escape(details) + "</i>";
-        }
-        return msg;
+        return formatLinkError();
+    }
+
+    public static String formatLinkErrorConflict() {
+        return "<b>Не удалось привязать аккаунт</b>\n\n"
+                + "Этот аккаунт Telegram уже привязан к профилю в ЖАН FINANCE.\n\n"
+                + "Если вы хотите привязать его заново, сначала отвяжите его командой /unlink.";
+    }
+
+    public static String formatLinkGenericError() {
+        return "<b>Не удалось привязать аккаунт</b>\n\n"
+                + "Произошла ошибка при обработке запроса. Пожалуйста, попробуйте позже или обратитесь в службу поддержки.";
     }
 
     public static String formatUnlinkSuccess() {

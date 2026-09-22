@@ -74,10 +74,14 @@ public class StartCommandHandler implements CommandHandler {
                 }
             } catch (BackendClientException e) {
                 log.warn("Binding failed for chatId {}: status={}, message={}", chatId, e.getStatusCode(), e.getMessage());
-                messageSender.sendHtml(chatId, HtmlMessageFormatter.formatLinkError(e.getMessage()));
+                if (e.getStatusCode() == 409) {
+                    messageSender.sendHtml(chatId, HtmlMessageFormatter.formatLinkErrorConflict());
+                } else {
+                    messageSender.sendHtml(chatId, HtmlMessageFormatter.formatLinkError());
+                }
             } catch (Exception e) {
                 log.error("Unexpected error during binding for chatId {}: {}", chatId, e.getMessage(), e);
-                messageSender.sendHtml(chatId, HtmlMessageFormatter.formatLinkError("Внутренняя ошибка сервиса"));
+                messageSender.sendHtml(chatId, HtmlMessageFormatter.formatLinkGenericError());
             }
         } else {
             Optional<ClientProfileDto> profileOpt = sessionCache.resolve(chatId, () -> backendClient.getClientByChatId(chatId));
