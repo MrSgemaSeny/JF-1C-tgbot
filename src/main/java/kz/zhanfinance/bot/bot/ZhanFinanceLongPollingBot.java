@@ -3,12 +3,14 @@ package kz.zhanfinance.bot.bot;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.boot.autoconfigure.condition.ConditionalOnExpression;
 import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.longpolling.starter.SpringLongPollingBot;
 import org.telegram.telegrambots.longpolling.util.LongPollingSingleThreadUpdateConsumer;
 import org.telegram.telegrambots.meta.api.objects.Update;
 
 @Component
+@ConditionalOnExpression("!'${bot.token:}'.isEmpty() && !'${bot.token:}'.startsWith('000000') && !'${bot.token:}'.equals('change-me')")
 public class ZhanFinanceLongPollingBot implements SpringLongPollingBot, LongPollingSingleThreadUpdateConsumer {
 
     private static final Logger log = LoggerFactory.getLogger(ZhanFinanceLongPollingBot.class);
